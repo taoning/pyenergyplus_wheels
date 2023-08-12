@@ -1,6 +1,5 @@
 from setuptools import setup
 import platform
-import os
 
 # Determine the platform and Python version
 package = 'pyenergyplus'
@@ -44,14 +43,14 @@ wheels = {
     },
 }
 
-wheel = wheels[plat][machine]['wheel']
+wheel = f"{package}-23.1.0-py3-none-{wheels[plat][machine]['wheel']}.whl"
+
 # Define the URL template for the wheels
-url = f"https://github.com/taoning/pyenergyplus/raw/main/wheels/{plat}/{package}-23.1.0-py3-none-{wheel}.whl"
-print(url)
+url = f"https://github.com/taoning/pyenergyplus/raw/main/wheels/{plat}/{wheel}"
+
 
 setup(
-    name='pyenergyplus',
-    version='23.1.0',
-    install_requires=['pyenergyplus'],
-    dependency_links=[url],
+    name='pyenergyplus_wheels',
+    version='0.1.0',
+    install_requires=[f'pyenergyplus @ {url}'],
 )
